@@ -5,13 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.resource.UMLResource;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
@@ -49,13 +42,8 @@ public class LDMCatalogueHTML {
 				// 1st and 2nd version number remains):
 				cfg.setIncompatibleImprovements(new Version(2, 3, 20));
 
-				Model root = new LDMCatalogueHTML().getModel(input.getAbsolutePath());
-				if (root != null) {
-					LDMRenderer cldm = new LDMRenderer(root);
-					cldm.renderCatalogue(cfg, outputDir);
-				} else {
-					System.out.println("Failed to load model");
-				}
+				LDMRendererHTML cldm = new LDMRendererHTML(input.getAbsolutePath());
+				cldm.renderCatalogue(cfg, outputDir);
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -65,20 +53,4 @@ public class LDMCatalogueHTML {
 			}
 		}
 	}
-
-	public Model getModel(String pathToModel) {
-		
-		modelUri = URI.createFileURI(pathToModel);
-		ResourceSet set = new ResourceSetImpl();
-		set.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);		
-		set.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-
-		set.createResource(modelUri);
-		System.out.println("Fetching the resource: " + modelUri.path());
-		Resource r = set.getResource(modelUri, true);
-
-		
-		
-        return (Model) EcoreUtil.getObjectByType(r.getContents(), UMLPackage.Literals.MODEL);
-	}	
 }

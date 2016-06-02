@@ -1,9 +1,9 @@
-<project name="CLDM Tools" default="catalogue-docx" basedir=".">
+<project name="LDM Tools" default="catalogue-docx" basedir=".">
 	<property file="build.properties"/>
 	<property file="${user.home}/build.properties"/>
 	<!-- ==================== File and Directory Names ======================== -->
 	<property name="input.name" value="ldm"/>
-	<property name="input.base" value="pathToModel"/>
+	<!-- <property name="input.base" value="pathToModel"/> -->
 	<property name="input.file" value="${input.name}.uml"/>
 	<property name="input.path" value="${input.base}/${input.file}"/>
 	<!-- ==================== Clean Target ==================================== -->
@@ -12,7 +12,7 @@
 	<!-- ==================== Catalogue Targets ================================== -->
 	<target name="catalogue-docx" depends="" description="Model catalogue (docx format) from UML">
 		<java classname="uk.org.whitecottage.ea.ldm.LDMCatalogueDOCX">
-			<arg value="${input.path}.uml"/>
+			<arg value="${input.path}"/>
 			<classpath>
 				<pathelement location="bin"/>
 				<fileset dir="lib">
@@ -32,7 +32,7 @@
 		</copy>
 		<mkdir dir="${build.html}"/>
 		<java classname="uk.co.bbc.ea.cldm.CLDMCatalogueHTML">
-			<arg value="${input.path}.uml"/>
+			<arg value="${input.path}"/>
 			<classpath>
 				<pathelement location="bin"/>
 				<fileset dir="lib">
