@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdmserverobject:WSRoutingRuleE xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:mdmserverobject="http://www.talend.org/mdmserverobject" xmi:id="_C-N1gHtcEeKWWJY3kGndnA" name="UpdateTrigger" description="Update trigger" concept="*" serviceJNDI="amalto/local/service/callprocess" parameters="process=OnUpdate" condition="C1 Or C2 Or C3">
+  <lastServerDef xmi:id="_-NhRMHtcEeKWWJY3kGndnA" name="Localhost" label="" passwd="dGFsZW5k" url="http://localhost:8180/talend/TalendPort" user="admin"/>
+  <wsRoutingRuleExpressions xmi:id="_uS8q4HtcEeKWWJY3kGndnA" name="C1" xpath="Update/OperationType" value="CREATE">
+    <wsOperator xmi:id="_uS8q4XtcEeKWWJY3kGndnA" value="CONTAINS"/>
+  </wsRoutingRuleExpressions>
+  <wsRoutingRuleExpressions xmi:id="_uS8q4ntcEeKWWJY3kGndnA" name="C2" xpath="Update/OperationType" value="UPDATE">
+    <wsOperator xmi:id="_uS8q43tcEeKWWJY3kGndnA" value="CONTAINS"/>
+  </wsRoutingRuleExpressions>
+  <wsRoutingRuleExpressions xmi:id="_uS8q5HtcEeKWWJY3kGndnA" name="C3" xpath="Update/OperationType" value="DELETE">
+    <wsOperator xmi:id="_uS8q5XtcEeKWWJY3kGndnA" value="CONTAINS"/>
+  </wsRoutingRuleExpressions>
+</mdmserverobject:WSRoutingRuleE>
